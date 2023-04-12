@@ -47,8 +47,8 @@ def cheess_plate(num_rect=4, num_row=8):
 class Figure_checker:
     def __init__(self, size=80, color='white'):
         """
-
-        :type color: object
+        :type size: diameter
+        :type color: 'white'/'black'
         """
         # self.center = pos[0] + (100 - size) // 2 + (size // 2),  pos[1] + (100 - size) // 2 + size // 2
         self.size = size
@@ -60,6 +60,10 @@ class Figure_checker:
 
 
     def draw(self, pos=(0,0)):
+        """
+        :param pos: base_position
+        :return: draw_figure
+        """
         center = pos[0] + (100 - self.size) // 2 + (self.size // 2), pos[1] + (100 - self.size) // 2 + self.size // 2
         if self.color == 'white':
             pygame.draw.circle(w_setting.screen, self._g_color, center, self.radius)
