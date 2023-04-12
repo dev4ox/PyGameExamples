@@ -7,7 +7,12 @@ if __name__ == "__main__":
     #Здесь можно вызывать функции
     module.cheess_plate()
 
-
+    w_checker = module.Figure_checker(90, 'white')
+    b_checker = module.Figure_checker(90, 'black')
+    w_checker.draw((0, 0))
+    w_checker.draw((0, 100))
+    b_checker.draw((100, 0))
+    b_checker.draw((100, 100))
     # module.draw_circle([150, 50], 50, [200, 0], 4, [200, 100, 0])
     # module.Figure_checker()
 

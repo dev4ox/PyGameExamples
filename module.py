@@ -45,24 +45,35 @@ def cheess_plate(num_rect=4, num_row=8):
             draw_rect([100, y_start_pos], [100, 100], [200, 0], num_rect)
             
 class Figure_checker:
-    def __init__(self, pos=(0, 0), size=80, color=(255, 255, 255)):
+    def __init__(self, size=80, color='white'):
         """
 
         :type color: object
         """
-        self.center = pos[0] + (100 - size) // 2 + (size // 2),  pos[1] + (100 - size) // 2 + size // 2
+        # self.center = pos[0] + (100 - size) // 2 + (size // 2),  pos[1] + (100 - size) // 2 + size // 2
+        self.size = size
         self.radius = size // 2
         self.color = color
+        self._w_color = (235, 235, 235)
+        self._b_color = (20, 20, 20)
+        self._g_color = (128, 128, 128)
 
 
-    def draw(self):
-        pass
-        # if self.color == 'white':
-        #     pygame.draw.circle(w_setting.screen, (color[0], color[1], color[2]), center, radius)
-        #     pygame.draw.circle(w_setting.screen, (color[0], color[1], color[2]), center, radius)
-        #     pygame.draw.circle(w_setting.screen, (color[0], color[1], color[2]), center, radius)
-        #     pygame.draw.circle(w_setting.screen, (color[0], color[1], color[2]), center, radius)
-        # elif self.color == 'black':
-        #     pass
-        # else:
-        #     pass
+    def draw(self, pos=(0,0)):
+        center = pos[0] + (100 - self.size) // 2 + (self.size // 2), pos[1] + (100 - self.size) // 2 + self.size // 2
+        if self.color == 'white':
+            pygame.draw.circle(w_setting.screen, self._g_color, center, self.radius)
+            pygame.draw.circle(w_setting.screen, self._w_color, center, self.radius-1)
+            pygame.draw.circle(w_setting.screen, self._b_color, center, self.radius-7)
+            pygame.draw.circle(w_setting.screen, self._w_color, center, self.radius-9)
+            pygame.draw.circle(w_setting.screen, self._b_color, center, self.radius-17)
+            pygame.draw.circle(w_setting.screen, self._w_color, center, self.radius-19)
+        elif self.color == 'black':
+            pygame.draw.circle(w_setting.screen, self._g_color, center, self.radius)
+            pygame.draw.circle(w_setting.screen, self._b_color, center, self.radius-1)
+            pygame.draw.circle(w_setting.screen, self._w_color, center, self.radius-7)
+            pygame.draw.circle(w_setting.screen, self._b_color, center, self.radius-9)
+            pygame.draw.circle(w_setting.screen, self._w_color, center, self.radius-17)
+            pygame.draw.circle(w_setting.screen, self._b_color, center, self.radius-19)
+        else:
+            pass
