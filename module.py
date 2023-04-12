@@ -6,7 +6,7 @@ def draw_rect(start_pos=(0, 0), length_d_r=(50, 50), step_pos=(0, 0), num_repeat
     pos = start_pos
     for i in range(num_repeat):
         if i == 0:
-            pygame.draw.rect(w_setting.screen, color, (start_pos, length_d_r[0], length_d_r[1]))
+            pygame.draw.rect(w_setting.screen, color, (pos[0], pos[1], length_d_r[0], length_d_r[1]))
             continue
         pos[0] += step_pos[0]
         pos[1] += step_pos[1]
@@ -45,12 +45,12 @@ def cheess_plate(num_rect=4, num_row=8):
             draw_rect([100, y_start_pos], [100, 100], [200, 0], num_rect)
             
 class Figure_checker:
-    def __init__(self, pos=(0, 0), size=80, color='white'):
+    def __init__(self, pos=(0, 0), size=80, color=(255, 255, 255)):
         """
 
         :type color: object
         """
-        self.center = pos[0] + (100 - size) // 2 + (size // 2), pos[1] + (100 - size) // 2 + size // 2
+        self.center = pos[0] + (100 - size) // 2 + (size // 2),  pos[1] + (100 - size) // 2 + size // 2
         self.radius = size // 2
         self.color = color
 

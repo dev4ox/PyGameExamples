@@ -6,8 +6,10 @@ import module       #Готовые модули
 if __name__ == "__main__":
     #Здесь можно вызывать функции
     module.cheess_plate()
-    module.draw_circle([150, 50], 50, [200, 0], 4, [200, 100, 0])
-    # module.figure_checker()
+
+
+    # module.draw_circle([150, 50], 50, [200, 0], 4, [200, 100, 0])
+    # module.Figure_checker()
 
 
     # Инициализация графического интерфейса
@@ -17,3 +19,4 @@ if __name__ == "__main__":
                 pygame.quit()
                 sys.exit()
         pygame.display.flip()
+
