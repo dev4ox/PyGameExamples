@@ -36,10 +36,8 @@ if __name__ == "__main__":
     b_checkers = [b_ch_1, b_ch_2, b_ch_3, b_ch_4, b_ch_5, b_ch_6,
                   b_ch_7, b_ch_8, b_ch_9, b_ch_10, b_ch_11, b_ch_12]
 
-    for w_ch in w_checkers:
-        w_ch.draw()
-    for b_ch in b_checkers:
-        b_ch.draw()
+    module.out_checkers(w_checkers)
+    module.out_checkers(b_checkers)
 
 
     # Инициализация графического интерфейса
