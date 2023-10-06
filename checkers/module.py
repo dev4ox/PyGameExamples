@@ -1,36 +1,30 @@
 import pygame
-import w_setting
+import setting
 
 #Рисуем прямоугольники через цикл
 def draw_rect(start_pos=(0, 0), length_d_r=(50, 50), step_pos=(0, 0), num_repeat=1, color=(0, 0, 0)):
     pos = start_pos
     for i in range(num_repeat):
         if i == 0:
-            pygame.draw.rect(w_setting.screen, color, (pos[0], pos[1], length_d_r[0], length_d_r[1]))
+            pygame.draw.rect(setting.screen, color, (pos[0], pos[1], length_d_r[0], length_d_r[1]))
             continue
         pos[0] += step_pos[0]
         pos[1] += step_pos[1]
-        pygame.draw.rect(w_setting.screen, color, (pos[0], pos[1], length_d_r[0], length_d_r[1]))
+        pygame.draw.rect(setting.screen, color, (pos[0], pos[1], length_d_r[0], length_d_r[1]))
 
 #Рисуем окружности через цикл
 def draw_circle(start_pos=(0, 0), radius=50, step_pos=(0, 0), num_repeat=1, color=(0, 0, 0)):
     pos = start_pos
     for i in range(num_repeat):
         if i == 0:
-            pygame.draw.circle(w_setting.screen, color, start_pos, radius)
+            pygame.draw.circle(setting.screen, color, start_pos, radius)
             continue
         pos[0] += step_pos[0]
         pos[1] += step_pos[1]
-        pygame.draw.circle(w_setting.screen, color, (pos[0], pos[1]), radius)
-
-#Рисуем многоугольники через цикл (Surface, color, pointlist, width=0)
-def draw_polygon():
-    pass
-
-
+        pygame.draw.circle(setting.screen, color, (pos[0], pos[1]), radius)
 
 #Шахматная доска
-def cheess_plate(num_rect=4, num_row=8):
+def draw_plate(num_rect=4, num_row=8):
     y_start_pos = 0         #Изменяемая позиция по вертикали (ось Y)
     # right_repeat = 4      #Количество черных квадратов по диагонали (ось X)
     for i in range(num_row):
@@ -47,19 +41,21 @@ def cheess_plate(num_rect=4, num_row=8):
 def out_checkers(checkers:list):
     for i in checkers:
         i.draw()
+
+
 class Figure_checker:
-    def __init__(self, team='white', pos=[0, 0], size=80, status = True):
+    def __init__(self, team:str = 'white', pos:list = [50, 50], size:int = 80, status:bool = True):
         """
         :type team: 'white'/'black'
         :param pos: base_position
         :param size: diameter
         :param status: damka?
         """
-        self.pos = pos
         self.size = size
         self.radius = size // 2
         self.team = team
-        self.center = self.pos[0] + (100 - size) // 2 + (size // 2),  self.pos[1] + (100 - size) // 2 + size // 2
+        self.__center = pos
+        self.square = [pos[0] - 50, pos[1] - 50, pos[0] + 50, pos[1] + 50]
         self.status = status
 
     def draw(self):
@@ -71,18 +67,24 @@ class Figure_checker:
         g_color = (150, 150, 150)
         b_color = (30, 30, 30)
         if self.team == 'white':
-            pygame.draw.circle(w_setting.screen, b_color, self.center, self.radius)
-            pygame.draw.circle(w_setting.screen, w_color, self.center, self.radius-1)
-            pygame.draw.circle(w_setting.screen, g_color, self.center, self.radius-7)
-            pygame.draw.circle(w_setting.screen, w_color, self.center, self.radius-9)
-            pygame.draw.circle(w_setting.screen, g_color, self.center, self.radius-17)
-            pygame.draw.circle(w_setting.screen, w_color, self.center, self.radius-19)
+            pygame.draw.circle(setting.screen, b_color, self.__center, self.radius)
+            pygame.draw.circle(setting.screen, w_color, self.__center, self.radius-1)
+            pygame.draw.circle(setting.screen, g_color, self.__center, self.radius-7)
+            pygame.draw.circle(setting.screen, w_color, self.__center, self.radius-9)
+            pygame.draw.circle(setting.screen, g_color, self.__center, self.radius-17)
+            pygame.draw.circle(setting.screen, w_color, self.__center, self.radius-19)
         elif self.team == 'black':
-            pygame.draw.circle(w_setting.screen, b_color, self.center, self.radius)
-            pygame.draw.circle(w_setting.screen, r_color, self.center, self.radius-1)
-            pygame.draw.circle(w_setting.screen, b_color, self.center, self.radius-7)
-            pygame.draw.circle(w_setting.screen, r_color, self.center, self.radius-9)
-            pygame.draw.circle(w_setting.screen, b_color, self.center, self.radius-17)
-            pygame.draw.circle(w_setting.screen, r_color, self.center, self.radius-19)
+            pygame.draw.circle(setting.screen, b_color, self.__center, self.radius)
+            pygame.draw.circle(setting.screen, r_color, self.__center, self.radius-1)
+            pygame.draw.circle(setting.screen, b_color, self.__center, self.radius-7)
+            pygame.draw.circle(setting.screen, r_color, self.__center, self.radius-9)
+            pygame.draw.circle(setting.screen, b_color, self.__center, self.radius-17)
+            pygame.draw.circle(setting.screen, r_color, self.__center, self.radius-19)
         else:
             pass
+
+    def move(self, new_pos:list):
+        self.__center = new_pos
+
+    def get_square(self):
+        return self.square

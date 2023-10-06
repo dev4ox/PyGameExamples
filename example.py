@@ -1,5 +1,6 @@
 # import w_setting
 # import module
+import time
 import pygame
 from pygame.locals import *
 import sys
@@ -66,7 +67,7 @@ while True:
         character_y -= 0.1
     if keys[K_DOWN]:
         character_y += 0.1
-
+    print(keys)
     # Очистка экрана
     screen.fill(WHITE)
 
